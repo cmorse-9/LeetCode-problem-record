@@ -44,5 +44,40 @@ Operation:
 end of operation
 Need to operate 1+3+5 = 9 times to reach all 6's in the array
 
-From the middle to the last takes 2 * (n-1 - n/2) operations to finish. 
+Depending on n is even or odd, this will take sum of all odd or even numbers, the total number of the numbers is from 0 to n/2. 
+n is even: 1 + 3 + 5 + 7 + 9...
+n is odd: 2 + 4 + 6 + 8 + 10...
+
+```cpp
+class Solution {
+public:
+    int minOperations(int n) {
+        // n is odd number
+        if(n%2){
+            int mid = n / 2;
+            int last = n - 1;
+            int count = 0;
+            int add = 2;
+            for(int i = mid; i < last; i++){
+                count += add;
+                add += 2;
+            }
+            return count;
+        }
+        // n is even number
+        else{
+            int mid = n / 2;
+            int last = n - 1;
+            int count = 1;
+            int add = 1;
+            for(int i = mid; i < last; i++){
+                add += 2;
+                count += add;
+                
+            }
+            return count;
+        }
+    }
+};
+```
 
